@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 // mongodb connection 
-mongoose.connect("mongodb+srv://paytm-clone:lalantoops@cluster0.78f09.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+mongoose.connect("");
 
 //schema for users
 const userSchema = new mongoose.Schema({
