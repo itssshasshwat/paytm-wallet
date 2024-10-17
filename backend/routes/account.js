@@ -1,14 +1,11 @@
 // backend/routes/account.js
 const express = require('express');
-const { authMiddleware } = require('../middleware.js');
-const { Account } = require('../db.js');
+const { authMiddleware } = require('../middleware');
+const { Account } = require('../db');
 const { default: mongoose } = require('mongoose');
-
-
 
 const router = express.Router();
 
-//endpoint for the user to get a balance
 router.get("/balance", authMiddleware, async (req, res) => {
     const account = await Account.findOne({
         userId: req.userId
@@ -19,8 +16,6 @@ router.get("/balance", authMiddleware, async (req, res) => {
     })
 });
 
-
-// endpoint for the user to transfer money
 router.post("/transfer", authMiddleware, async (req, res) => {
     const session = await mongoose.startSession();
 
@@ -56,6 +51,5 @@ router.post("/transfer", authMiddleware, async (req, res) => {
         message: "Transfer successful"
     });
 });
-
 
 module.exports = router;

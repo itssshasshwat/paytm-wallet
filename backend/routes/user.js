@@ -59,10 +59,10 @@ router.post("/signup",async(req,res) => {
         userId
     },JWT_SECRET);
 
-    req.json({
+    res.json({
         message : "User created successfully",
         token : token
-    })
+    });
 })
 
 
