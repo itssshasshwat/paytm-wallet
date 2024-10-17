@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 // mongodb connection 
-mongoose.connect("");
+mongoose.connect("mongodb+srv://paytm-clone:lalantoops@cluster0.78f09.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
 
 //schema for users
 const userSchema = new mongoose.Schema({
@@ -49,7 +49,7 @@ const accountSchema = new mongoose.Schema({
 
 //create a model from the schema
 const Account = mongoose.model('Account', accountSchema);
-const User = mongoose.mode('User' , userSchema);
+const User = mongoose.model('User' , userSchema);
 
 module.exports = {
     User,

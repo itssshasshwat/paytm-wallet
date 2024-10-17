@@ -1,13 +1,16 @@
+//backend/routes/user.js
+
 const express = require("express");
 
+const router = express.Router();
+
 const zod = require("zod");
-const { User } = require("../db");
+const { User , Account } = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
 const  { authMiddleware } = require("../middleware");
 
 
-const router = express.Router();
 
 
 // the signup route
@@ -43,7 +46,14 @@ router.post("/signup",async(req,res) => {
         lastName : req.body.lastName,
         password : req.body.password,
     })
-    const userid = user._id;
+    const userId = user._id;
+
+    // assign random balance to the user between 1 - 10000 so we dont have to intigrate anything extra
+    await Account.create({
+        userId,
+        balance: 1 + Math.random() * 10000
+    })
+
 
     const token = jwt.sign({
         userId
@@ -144,5 +154,7 @@ router.get("/bulk", async (req, res) => {
         }))
     })
 })
+
+
 
 module.exports =  router;
