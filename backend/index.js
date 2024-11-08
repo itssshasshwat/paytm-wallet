@@ -16,4 +16,4 @@ app.use(express.json());
 app.use("/api/v1", rootRouter);
 
 
-app.listen(4000);
+app.listen(3000);
